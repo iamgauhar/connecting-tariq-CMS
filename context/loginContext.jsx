@@ -3,10 +3,12 @@ import { createContext, useContext, useState } from "react";
 const LoginContext = createContext();
 
 const LoginContextProvider = ({ children }) => {
-  const [email, setEmail] = useState();
-  const [VerifyEmail, setVerifyEmail] = useState();
-  const [password, setPassword] = useState();
-  const [newPassword, setNewPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [verifyEmail, setVerifyEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [user, setUser] = useState(null);
 
   return (
     <LoginContext.Provider
@@ -15,10 +17,11 @@ const LoginContextProvider = ({ children }) => {
         setEmail,
         password,
         setPassword,
-        VerifyEmail,
+        verifyEmail,
         setVerifyEmail,
         newPassword,
         setNewPassword,
+        user, setUser, repeatPassword, setRepeatPassword
       }}
     >
       {children}
