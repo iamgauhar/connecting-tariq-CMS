@@ -1,10 +1,14 @@
-import React from "react";
+import { useEffect } from "react";
 
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import AdminHome from "../components/AdminHome";
 
 const Home = () => {
+  useEffect(() => {
+
+  }, [])
+
   return (
     <div>
       {/* <h1 className='text-4xl'>{`Welcome to Home ${user?.name}`}</h1>
