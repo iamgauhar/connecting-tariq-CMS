@@ -1,12 +1,36 @@
 import React from 'react';
 import { useProductContext } from '../../context/productContext';
+import { createCategoryUrl } from '../../utils/apiUrl';
 
 const CategorySection = () => {
     const { categoryName, setCategoryName } = useProductContext();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(categoryName);
+        if (!categoryName) {
+            alert('Please provide category name');
+        }
+        try {
+            const response = await fetch(createCategoryUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: categoryName }),
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                console.log(result);
+                alert(result.message);
+            } else {
+                alert(result.message);
+                // console.log(result);
+            }
+            setCategoryName('');
+        } catch (err) {
+            console.log(err);
+        }
     };
     return (
         <div className="w-full md:pl-[20%] h-[100vh] bg-gray-900 flex justify-center pt-20 text-base md:text-4xl text-white">

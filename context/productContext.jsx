@@ -5,9 +5,10 @@ const ProductContext = createContext();
 const ProductContextProvider = ({ children }) => {
     const [name, setName] = useState('');
     const [categoryName, setCategoryName] = useState('');
+    const [categories, setCategories] = useState([]);
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [thumbnail, setThumbnail] = useState('');
+    const [thumbnails, setThumbnails] = useState([]);
     const [showMenu, setShowMenu] = useState(false);
 
     return (
@@ -21,10 +22,12 @@ const ProductContextProvider = ({ children }) => {
                 setDescription,
                 price,
                 setPrice,
-                thumbnail,
-                setThumbnail,
+                thumbnails,
+                setThumbnails,
                 categoryName,
                 setCategoryName,
+                categories,
+                setCategories,
             }}
         >
             {children}
