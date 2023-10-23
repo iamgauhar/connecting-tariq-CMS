@@ -23,7 +23,7 @@ const Sidebar = () => {
   return (
     <div
       className={`${showMenu ? "block" : "hidden"
-        } md:block w-[250px] h-[100vh] bg-gray-800 fixed top-0 left-0 text-white transition-all`}
+        } md:block w-1/5 h-[100vh] bg-gray-800 fixed top-0 left-0 text-white transition-all`}
     >
       <ul className="w-full flex flex-col justify-center gap-5 text-base text-white pt-[100px] pl-5 z-10 transition-all">
         <li className="hover:font-semibold">
@@ -31,6 +31,9 @@ const Sidebar = () => {
         </li>
         <li className="hover:font-semibold">
           <NavLink to="/addProduct" onClick={() => setShowMenu(false)}>Add Product</NavLink>
+        </li>
+        <li className="hover:font-semibold">
+          <NavLink to="/manageProducts" onClick={() => setShowMenu(false)}>Manage Products</NavLink>
         </li>
         <li className="hover:font-semibold">
           <NavLink to="/category" className="category" onClick={() => setShowMenu(false)}>Category</NavLink>

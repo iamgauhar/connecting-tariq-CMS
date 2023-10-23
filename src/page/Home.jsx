@@ -19,7 +19,7 @@ const Home = () => {
 
       <div className="bg-[#1d2634] h-cal-[100vh-60px]">
         <Header />
-        <div className="flex">
+        <div className="flex relative w-full">
           <Sidebar />
           <AdminHome />
         </div>
