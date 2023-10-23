@@ -1,15 +1,27 @@
 import React from 'react';
+import { useProductContext } from '../../context/productContext';
 
 const CategorySection = () => {
+    const { categoryName, setCategoryName } = useProductContext();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(categoryName);
+    };
     return (
-        <div className="w-full pl-[20%] h-[100vh] bg-gray-900 flex justify-center pt-20 text-base md:text-4xl text-white">
-            <form className="flex flex-col gap-8  p-4 rounded-md w-[70%] pt-[10%]">
+        <div className="w-full md:pl-[20%] h-[100vh] bg-gray-900 flex justify-center pt-20 text-base md:text-4xl text-white">
+            <form
+                className="flex flex-col gap-8  p-4 rounded-md w-[70%] pt-[10%]"
+                onSubmit={handleSubmit}
+            >
                 <h2>Create Category</h2>
                 <div className="flex flex-col text-[22px] gap-2">
                     <label htmlFor="name">category name</label>
                     <input
                         type="text"
                         className="text-black py-2 pl-4 rounded outline-none focus:ring"
+                        value={categoryName}
+                        onChange={(e) => setCategoryName(e.target.value)}
                     />
                 </div>
                 <input
