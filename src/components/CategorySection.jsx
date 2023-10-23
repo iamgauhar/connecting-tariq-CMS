@@ -15,7 +15,7 @@ const CategorySection = () => {
                 <input
                     type="submit"
                     value="Create"
-                    className="cursor-pointer p-2 self-center bg-white text-black w-[20%] text-xl rounded"
+                    className="cursor-pointer p-2 self-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-500 hover:to-indigo-500 text-white w-[20%] text-xl rounded"
                 />
             </form>
         </div>
