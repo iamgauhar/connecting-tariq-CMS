@@ -5,3 +5,4 @@ export const forgotPassword = `${baseURL}/auth/forgot-password`;
 export const resetPassword = `${baseURL}/auth/reset-password`;
 export const createCategoryUrl = `${baseURL}/category/add`;
 export const getCategoryUrl = `${baseURL}/category/all`;
+export const createProductUrl = `${baseURL}/product/add`;

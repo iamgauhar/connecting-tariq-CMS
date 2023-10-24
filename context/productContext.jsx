@@ -10,6 +10,7 @@ const ProductContextProvider = ({ children }) => {
     const [price, setPrice] = useState('');
     const [thumbnails, setThumbnails] = useState([]);
     const [showMenu, setShowMenu] = useState(false);
+    const [isChecked, setIsChecked] = useState(true);
 
     return (
         <ProductContext.Provider
@@ -28,6 +29,8 @@ const ProductContextProvider = ({ children }) => {
                 setCategoryName,
                 categories,
                 setCategories,
+                isChecked,
+                setIsChecked,
             }}
         >
             {children}

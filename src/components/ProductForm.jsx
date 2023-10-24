@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useProductContext } from '../../context/productContext';
-import { getCategoryUrl } from '../../utils/apiUrl';
+import { createProductUrl, getCategoryUrl } from '../../utils/apiUrl';
 
 const ProductForm = ({ text }) => {
     const {
@@ -16,21 +16,46 @@ const ProductForm = ({ text }) => {
         setCategories,
         categoryName,
         setCategoryName,
+        isChecked,
+        setIsChecked,
     } = useProductContext();
 
     const createProduct = async (e) => {
         e.preventDefault();
-        // const formData = new FormData();
-        // formData.append('name', name);
-        // formData.append('price', price);
-        // formData.append('images', thumbnail);
-        // formData.append('description', description);
-        // formData.append('')
-        // console.log(formData);
+        console.log({
+            name,
+            price,
+            categoryName,
+            thumbnails,
+            description,
+            isChecked,
+        });
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('price', price);
+        formData.append('description', description);
+        formData.append('categoryId', categoryName);
+        formData.append('isPriceVisible', isChecked);
+        for (let file of thumbnails) {
+            formData.append('images', file);
+        }
+        // // console.log(formData);
+        const response = await fetch(createProductUrl, {
+            method: 'POST',
+            body: formData,
+        });
+        const product = await response.json();
+        if (product.success) {
+            console.log(product);
+        } else {
+            console.log(product);
+        }
     };
     // FormData()
     const handleFiles = (e) => {
         const files = e.target.files;
+
+        setThumbnails(files);
     };
     const fetchCategories = async () => {
         const response = await fetch(getCategoryUrl, {
@@ -38,7 +63,7 @@ const ProductForm = ({ text }) => {
         });
         const categories = await response.json();
         if (categories.success) {
-            console.log(categories);
+            // console.log(categories);
             setCategories(categories.categories);
         } else {
             alert(categories.message);
@@ -79,7 +104,7 @@ const ProductForm = ({ text }) => {
                             </option>
                             {categories.map((categ) => {
                                 return (
-                                    <option key={categ._id} value={categ.name}>
+                                    <option key={categ._id} value={categ._id}>
                                         {categ.name}
                                     </option>
                                 );
@@ -108,8 +133,8 @@ const ProductForm = ({ text }) => {
                                 required
                                 name="file"
                                 multiple
-                                value={thumbnail}
-                                onChange={(e) => console.log(e.target.files)}
+                                // value={thumbnails}
+                                onChange={handleFiles}
                             />
                             <label htmlFor="toggle">
                                 <b>₹</b>?
@@ -121,6 +146,10 @@ const ProductForm = ({ text }) => {
                                     value=""
                                     name="toggle"
                                     className="sr-only peer"
+                                    checked={isChecked}
+                                    onChange={(e) =>
+                                        setIsChecked(e.target.checked)
+                                    }
                                 />
                                 <div className="group peer ring-0 bg-rose-400  rounded-full outline-none duration-300 after:duration-300 w-16 h-8  shadow-md peer-checked:bg-emerald-500  peer-focus:outline-none  after:content-['✖️']  after:rounded-full after:absolute after:bg-gray-50 after:outline-none after:h-6 after:w-6 after:top-1 after:left-1 after:-rotate-180 after:flex after:justify-center after:items-center peer-checked:after:translate-x-8 peer-checked:after:content-['✔️'] peer-hover:after:scale-95 peer-checked:after:rotate-0"></div>
                             </label>
