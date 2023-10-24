@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useProductContext } from '../../context/productContext';
 import { createProductUrl, getCategoryUrl } from '../../utils/apiUrl';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from './Loader';
 
 const ProductForm = ({ text }) => {
     const {
@@ -18,18 +21,21 @@ const ProductForm = ({ text }) => {
         setCategoryName,
         isChecked,
         setIsChecked,
+        loading,
+        setLoading,
     } = useProductContext();
+
+    const toastOptions = {
+        position: 'bottom-right',
+        autoClose: 5000,
+        pauseOnHover: true,
+        theme: 'colored',
+        draggable: true,
+    };
 
     const createProduct = async (e) => {
         e.preventDefault();
-        console.log({
-            name,
-            price,
-            categoryName,
-            thumbnails,
-            description,
-            isChecked,
-        });
+        setLoading(true);
         const formData = new FormData();
         formData.append('name', name);
         formData.append('price', price);
@@ -46,12 +52,17 @@ const ProductForm = ({ text }) => {
         });
         const product = await response.json();
         if (product.success) {
-            console.log(product);
+            setName('');
+            setDescription('');
+            setPrice('');
+            setLoading(false);
+            toast.success(product.message, toastOptions);
         } else {
+            toast.error(product.message, toastOptions);
             console.log(product);
         }
     };
-    // FormData()
+
     const handleFiles = (e) => {
         const files = e.target.files;
 
@@ -63,19 +74,25 @@ const ProductForm = ({ text }) => {
         });
         const categories = await response.json();
         if (categories.success) {
-            // console.log(categories);
             setCategories(categories.categories);
         } else {
-            alert(categories.message);
+            toast.error(categories.message, toastOptions);
         }
     };
     useEffect(() => {
         try {
             fetchCategories();
+
+            if (loading) {
+                document.body.style.opacity = 0.5;
+            } else {
+                document.body.style.opacity = 1;
+            }
         } catch (err) {
             console.log(err);
         }
-    }, []);
+    }, [loading]);
+
     return (
         <div className="w-full h-[100vh] bg-slate-300 flex justify-center">
             <div className="max-w-[750px]">
@@ -159,7 +176,9 @@ const ProductForm = ({ text }) => {
                         Add Product
                     </button>
                 </form>
+                {loading && <Loader />}
             </div>
+            <ToastContainer />
         </div>
     );
 };
