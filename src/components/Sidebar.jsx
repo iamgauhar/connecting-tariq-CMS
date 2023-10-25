@@ -22,9 +22,8 @@ const Sidebar = () => {
     // console.log(user);
     return (
         <div
-            className={`${
-                showMenu ? 'block' : 'hidden'
-            } md:block w-1/5 h-[100vh] bg-gray-800 fixed top-0 left-0 text-white transition-all`}
+            className={`${showMenu ? 'block' : 'hidden'
+                } md:block w-1/5 h-[100vh] bg-gray-800 fixed top-0 left-0 text-white transition-all`}
         >
             <ul className="w-full flex flex-col justify-center gap-5 text-base text-white pt-[100px] pl-5 z-10 transition-all">
                 <li className="hover:font-semibold">
@@ -55,6 +54,15 @@ const Sidebar = () => {
                         onClick={() => setShowMenu(false)}
                     >
                         Category
+                    </NavLink>
+                </li>
+                <li className="hover:font-semibold">
+                    <NavLink
+                        to="/customers"
+                        className="category"
+                        onClick={() => setShowMenu(false)}
+                    >
+                        Customers purchase
                     </NavLink>
                 </li>
                 <li className="hover:font-semibold" onClick={logout}>
