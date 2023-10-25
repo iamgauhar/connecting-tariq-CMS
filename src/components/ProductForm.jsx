@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useProductContext } from '../../context/productContext';
 import { createProductUrl, getCategoryUrl } from '../../utils/apiUrl';
 import { ToastContainer, toast } from 'react-toastify';
@@ -32,8 +32,9 @@ const ProductForm = ({ text }) => {
         theme: 'colored',
         draggable: true,
     };
-
+    const formRef = useRef(null);
     const createProduct = async (e) => {
+
         e.preventDefault();
         setLoading(true);
         const formData = new FormData();
@@ -52,6 +53,7 @@ const ProductForm = ({ text }) => {
         });
         const product = await response.json();
         if (product.success) {
+            formRef.current.reset()
             setName('');
             setDescription('');
             setPrice('');
@@ -102,6 +104,7 @@ const ProductForm = ({ text }) => {
                 <form
                     className="pt-[50px] max-w-[750px]"
                     onSubmit={createProduct}
+                    ref={formRef}
                 >
                     <div className="flex justify-center items-center flex-col gap-7 p-3 ">
                         <input
