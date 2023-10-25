@@ -2,11 +2,20 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { deleteProduct } from '../../utils/apiUrl';
 import { useProductContext } from '../../context/productContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const List = ({ item }) => {
     const { _id, name, price, isPriceVisible, images } = item;
     const { products, setProducts } = useProductContext();
 
+    const toastOptions = {
+        position: 'bottom-right',
+        autoClose: 5000,
+        pauseOnHover: true,
+        theme: 'colored',
+        draggable: true,
+    };
     const deleteItem = async () => {
         const response = await fetch(`${deleteProduct}/${_id}`, {
             method: 'DELETE',
@@ -17,8 +26,9 @@ const List = ({ item }) => {
                 (product) => product._id !== _id
             );
             setProducts(updatedProducts);
-            alert(result.message);
+            toast.success(result.message, toastOptions);
         } else {
+            toast.error(result.message, toastOptions);
             console.log(result);
         }
     };
@@ -66,6 +76,7 @@ const List = ({ item }) => {
                     Delete
                 </a>
             </td>
+            <ToastContainer />
         </tr>
     );
 };
