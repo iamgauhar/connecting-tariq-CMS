@@ -27,7 +27,7 @@ const ProductForm = ({ text }) => {
 
     const toastOptions = {
         position: 'bottom-right',
-        autoClose: 5000,
+        autoClose: 3000,
         pauseOnHover: true,
         theme: 'colored',
         draggable: true,
@@ -85,15 +85,10 @@ const ProductForm = ({ text }) => {
         try {
             fetchCategories();
 
-            if (loading) {
-                document.body.style.opacity = 0.5;
-            } else {
-                document.body.style.opacity = 1;
-            }
         } catch (err) {
             console.log(err);
         }
-    }, [loading]);
+    }, []);
 
     return (
         <div className="w-full h-[100vh] bg-slate-300 flex justify-center">

@@ -1,9 +1,19 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+
 import { useProductContext } from '../../context/productContext';
 import { createCategoryUrl } from '../../utils/apiUrl';
 
 const CategorySection = () => {
     const { categoryName, setCategoryName } = useProductContext();
+
+    const toastOptions = {
+        position: 'bottom-right',
+        autoClose: 3000,
+        pauseOnHover: true,
+        theme: 'colored',
+        draggable: true,
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,10 +31,9 @@ const CategorySection = () => {
 
             const result = await response.json();
             if (result.success) {
-                console.log(result);
-                alert(result.message);
+                toast.success("Category added", toastOptions)
             } else {
-                alert(result.message);
+                toast.error("Category failed", toastOptions)
                 // console.log(result);
             }
             setCategoryName('');
@@ -54,6 +63,7 @@ const CategorySection = () => {
                     className="cursor-pointer p-2 self-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-500 hover:to-indigo-500 text-white w-[20%] text-xl rounded"
                 />
             </form>
+            <ToastContainer />
         </div>
     );
 };
