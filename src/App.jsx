@@ -10,6 +10,7 @@ import Category from "./components/Category";
 import ManageProducts from "./components/ManageProducts";
 import Popup from "./components/Popup";
 import Customers from "./components/Customers";
+import SocialMedia from "./components/SocialMedia"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/editProduct" exact element={<Popup text="Update Product" />} />
             <Route path="/category" exact element={<Category />} />
             <Route path="/customers" exact element={<Customers />} />
+            <Route path="/socialmedia" exact element={<SocialMedia />} />
           </Routes>
         </BrowserRouter>
       </ProductContextProvider>

@@ -65,6 +65,16 @@ const Sidebar = () => {
                         Customers purchase
                     </NavLink>
                 </li>
+                <li className="hover:font-semibold">
+                    <NavLink
+                        to="/socialmedia"
+                        className="category"
+                        onClick={() => setShowMenu(false)}
+                    >
+                        Social Media
+                    </NavLink>
+                </li>
+
                 <li className="hover:font-semibold" onClick={logout}>
                     <NavLink>Logout</NavLink>
                 </li>
