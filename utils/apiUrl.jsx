@@ -9,3 +9,6 @@ export const createProductUrl = `${baseURL}/product/add`;
 export const productList = `${baseURL}/product/all`;
 export const deleteProduct = `${baseURL}/product/delete`;
 export const uploadCustomer = `${baseURL}/customer/upload`;
+export const uploadLink = `${baseURL}/social/new`;
+export const instaLink = `${baseURL}/social/instagram`;
+export const youtubeLink = `${baseURL}/social/youtube`;
