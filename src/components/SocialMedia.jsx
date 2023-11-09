@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
-import { instaLink, uploadLink, youtubeLink } from '../../utils/apiUrl'
+import { uploadLink, youtubeLink } from '../../utils/apiUrl'
 import { useProductContext } from '../../context/productContext'
 import { ToastContainer, toast } from 'react-toastify'
 import Loader from './Loader'
@@ -23,17 +23,11 @@ const SocialMedia = () => {
 
     const getUrls = async () => {
         try {
-
-            const insta = await fetch(instaLink)
-            const instaResult = await insta.json()
-            // setUrl(instaResult.response)
-
             const yt = await fetch(youtubeLink)
             const ytResult = await yt.json()
-            const newArr = [...instaResult.response, ...ytResult.response]
-            setUrl(newArr)
+            setUrl(ytResult.response)
 
-            // console.log(url)
+            // console.log(ytResult)
 
         } catch (err) {
             toast.error("Somthing went wrong", toastOptions)

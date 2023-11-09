@@ -15,7 +15,7 @@ const ProductList = () => {
         // console.log(await allProductList.json());
         const response = await allProductList.json();
         setProducts(response.products);
-        console.log(response.products);
+        console.log(response);
     };
 
     useEffect(() => {
