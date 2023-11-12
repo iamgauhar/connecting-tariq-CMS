@@ -5,6 +5,7 @@ const ProductContext = createContext();
 const ProductContextProvider = ({ children }) => {
     const [name, setName] = useState('');
     const [categoryName, setCategoryName] = useState('');
+    const [categoryId, setCategoryId] = useState('');
     const [categories, setCategories] = useState([]);
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -37,6 +38,8 @@ const ProductContextProvider = ({ children }) => {
                 setProducts,
                 loading,
                 setLoading,
+                categoryId,
+                setCategoryId,
             }}
         >
             {children}

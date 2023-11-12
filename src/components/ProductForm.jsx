@@ -23,6 +23,8 @@ const ProductForm = ({ text }) => {
         setIsChecked,
         loading,
         setLoading,
+        categoryId,
+        setCategoryId,
     } = useProductContext();
 
     const toastOptions = {
@@ -41,7 +43,8 @@ const ProductForm = ({ text }) => {
         formData.append('name', name);
         formData.append('price', price);
         formData.append('description', description);
-        formData.append('categoryId', categoryName);
+        formData.append('categoryId', categoryId);
+        formData.append('categoryName', categoryName);
         formData.append('isPriceVisible', isChecked);
         for (let file of thumbnails) {
             formData.append('images', file);
@@ -112,14 +115,17 @@ const ProductForm = ({ text }) => {
                         />
                         <select
                             className="text-gray-400 w-full block border-none outline-none px-3 py-2 rounded-md"
-                            onChange={(e) => setCategoryName(e.target.value)}
+                            onChange={(e) => {
+                                setCategoryId(e.target.value.split("+")[0])
+                                setCategoryName(e.target.value.split("+")[1])
+                            }}
                         >
                             <option value="Select Category">
                                 Select Category
                             </option>
                             {categories.map((categ) => {
                                 return (
-                                    <option key={categ._id} value={categ._id}>
+                                    <option key={categ._id} value={`${categ._id}+${categ.name}`}>
                                         {categ.name}
                                     </option>
                                 );
