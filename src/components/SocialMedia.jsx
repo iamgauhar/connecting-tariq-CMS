@@ -52,8 +52,9 @@ const SocialMedia = () => {
             })
             const data = await response.json()
             if (data.success) {
-                setLink("")
+
                 setLoading(false)
+                setLink("")
                 toast.success("Link upload successful", toastOptions)
             }
         } catch (err) {

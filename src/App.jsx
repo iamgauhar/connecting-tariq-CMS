@@ -11,6 +11,7 @@ import ManageProducts from "./components/ManageProducts";
 import Popup from "./components/Popup";
 import Customers from "./components/Customers";
 import SocialMedia from "./components/SocialMedia"
+import ListOffer from "./components/ListOffer";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/category" exact element={<Category />} />
             <Route path="/customers" exact element={<Customers />} />
             <Route path="/socialmedia" exact element={<SocialMedia />} />
+            <Route path="/listoffer" exact element={<ListOffer />} />
           </Routes>
         </BrowserRouter>
       </ProductContextProvider>

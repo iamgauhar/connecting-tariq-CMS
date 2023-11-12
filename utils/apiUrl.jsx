@@ -12,3 +12,4 @@ export const uploadCustomer = `${baseURL}/customer/upload`;
 export const uploadLink = `${baseURL}/social/new`;
 export const instaLink = `${baseURL}/social/instagram`;
 export const youtubeLink = `${baseURL}/social/youtube`;
+export const postOffer = `${baseURL}/crousel/post`;

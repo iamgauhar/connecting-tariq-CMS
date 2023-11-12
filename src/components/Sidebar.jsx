@@ -32,6 +32,11 @@ const Sidebar = () => {
                     </NavLink>
                 </li>
                 <li className="hover:font-semibold">
+                    <NavLink to="/listoffer" onClick={() => setShowMenu(false)}>
+                        List Offer
+                    </NavLink>
+                </li>
+                <li className="hover:font-semibold">
                     <NavLink
                         to="/addProduct"
                         onClick={() => setShowMenu(false)}
