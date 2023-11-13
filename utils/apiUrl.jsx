@@ -1,4 +1,5 @@
-const baseURL = 'http://localhost:3001';
+const baseURL = 'https://good-pear-crab-cape.cyclic.app';
+// const baseURL = 'http://localhost:3001';
 
 export const loginURL = `${baseURL}/auth/login`;
 export const forgotPassword = `${baseURL}/auth/forgot-password`;
