@@ -67,7 +67,7 @@ const Sidebar = () => {
                         className="category"
                         onClick={() => setShowMenu(false)}
                     >
-                        Customers purchase
+                        Customers photo
                     </NavLink>
                 </li>
                 <li className="hover:font-semibold">
@@ -76,7 +76,7 @@ const Sidebar = () => {
                         className="category"
                         onClick={() => setShowMenu(false)}
                     >
-                        Social Media
+                        YouTube links
                     </NavLink>
                 </li>
 
