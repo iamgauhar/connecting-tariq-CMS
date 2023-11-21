@@ -58,7 +58,7 @@ const Sidebar = () => {
                         className="category"
                         onClick={() => setShowMenu(false)}
                     >
-                        Category
+                        New Category
                     </NavLink>
                 </li>
                 <li className="hover:font-semibold">
